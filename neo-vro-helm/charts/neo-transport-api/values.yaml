@@ -2,3 +2,6 @@ image:
   repository: harbor.patras5g.eu/5gasp_private/neo-transport-api
   tag: latest
   pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: 5gaspsecret
