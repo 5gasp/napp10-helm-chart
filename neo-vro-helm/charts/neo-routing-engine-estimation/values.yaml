@@ -1,0 +1,4 @@
+image:
+  repository: harbor.patras5g.eu/5gasp_private/neo-routing-engine
+  tag: estimation
+  pullPolicy: IfNotPresent

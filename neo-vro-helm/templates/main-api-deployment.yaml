@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-api
+spec:
+  selector:
+    matchLabels:
+      app: main-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: main-api
+    spec:
+      containers:
+      - name: main-api
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "dev.5gasp"
+        - name: DEPLOYMENT
+          value: "dev.5gasp"
+        - name: REDIS_HOST
+          value: "redis-master"
+        - name: TRANSPORT_API_ENDPOINT
+          value: "http://neo-transport-api:3000"

@@ -1,0 +1,16 @@
+image:
+  repository: harbor.patras5g.eu/5gasp_private/neo-main-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+redis:
+  fullnameOverride: redis
+  architecture: standalone
+  auth:
+    enabled: false
+
+mongodb:
+  fullnameOverride: mongo
+  architecture: standalone
+  auth:
+    enabled: false

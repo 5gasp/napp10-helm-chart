@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo-transport-api
+spec:
+  selector:
+    matchLabels:
+      app: neo-transport-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: neo-transport-api
+    spec:
+      containers:
+      - name: neo-transport-api
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "dev.5gasp"
+        - name: DEPLOYMENT
+          value: "dev.5gasp"
+        - name: REDIS_HOST
+          value: "redis-master"
+        - name: NEO_ROUTING_API_ENDPOINT
+          value: "http://neo-routing-engine:3000"
+        - name: NEO_ROUTING_ESTIMATION_API_ENDPOINT
+          value: "http://neo-routing-engine-estimation:3000"
+        - name: OSRM_API_ENDPOINT
+          value: "http://osrm"

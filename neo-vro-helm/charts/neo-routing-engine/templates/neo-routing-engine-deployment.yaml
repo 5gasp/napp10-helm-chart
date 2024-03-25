@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo-routing-engine
+spec:
+  selector:
+    matchLabels:
+      app: neo-routing-engine
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: neo-routing-engine
+    spec:
+      containers:
+      - name: neo-routing-engine
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: MONGO_URI
+          value: "mongodb://mongo"
+        - name: OSRM_API_ENDPOINT
+          value: "http://osrm"
