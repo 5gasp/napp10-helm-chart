@@ -11,9 +11,13 @@ redis:
   architecture: standalone
   auth:
     enabled: false
+  persistence:
+    enabled: false
 
 mongodb:
   fullnameOverride: mongo
   architecture: standalone
   auth:
+    enabled: false
+  persistence:
     enabled: false

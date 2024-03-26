@@ -100,7 +100,7 @@ readinessProbe: null
 # Enable & configure this if you don't want to download the same maps each
 # time you deploy.
 persistence:
-  enabled: true
+  enabled: false
 
   # If defined, storageClassName: <storageClass>.
   # If set to "-", storageClassName: "", which disables dynamic provisioning.
